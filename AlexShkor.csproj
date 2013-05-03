@@ -40,6 +40,7 @@
     <Content Include="blog.htm" />
     <Content Include="css\bootstrap-responsive.css" />
     <Content Include="css\bootstrap.css" />
+    <Content Include="posts\_Posttemplate.htm" />
     <Content Include="_template.htm" />
     <Content Include="css\site.css" />
     <Content Include="index.htm" />
