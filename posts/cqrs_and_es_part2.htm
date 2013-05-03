@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0062)http://twitter.github.io/bootstrap/examples/justified-nav.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Alex Shkor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alex Shkor's personal page.">
+    <meta name="author" content="Alex Shkor">
+
+    <!-- Le styles -->
+     <link href="/css/bootstrap.css" rel="stylesheet">
+    
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="masthead">
+            <h3 class="muted">Alex Shkor</h3>
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <ul class="nav">
+                            <li><a href="/index.htm">Home</a></li>
+                            <li class="active"><a href="/blog.htm">Blog</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Downloads</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /.navbar -->
+        </div>
+
+        <hr>
+
+        <!-- Example row of columns -->
+        <div class="row-fluid">
+            <div class="post shortcuts_item" id="post_149464">
+                <div class="published">12 августа 2012 в 19:09</div>
+                <h1 class="title">
+
+
+
+
+                    <span class="post_title">Введение в CQRS + Event Sourcing: Часть 2</span>
+
+
+
+
+
+
+
+                </h1>
+
+
+
+                <div class="content html_format">
+                    В <a href="/posts/cqrs_and_es_part1.htm">прошлой статье</a> я начал с основ CQRS + Event Sourcing. В этот раз я предлагаю продолжить и более подробно посмотреть на ES.<br>
+                    <br>
+                    В <a href="https://github.com/AlexShkor/CQRS-Event-Sourcing-Sample--ASP.NET-MVC-">примере</a> который я выкладывал с моей <a href="/posts/cqrs_and_es_part1.htm">прошлой статьей</a> магия Event Sourcing’а была скрыта за абстракцией IRepository и двумя методами IRepository.Save() и IRepository.GetById&lt;&gt;().
+                                                                                                                                                                                               <br>
+                    Для того чтобы поподробнее разобраться что происходит я решил рассказать о процессе сохранения и загрузки агрегата из Event Store на примере проекта <a href="https://github.com/Lokad/lokad-iddd-sample">Lokad IDDD Sample</a> от Рината Абдулина. У него в аппликейшен сервисах идет прямое обращение к Event Store, без дополнительных абстракций, поэтому все выглядит очень наглядно. Application Service — это аналог CommandHandler, но который обрабатывает все комманды одного агрегата. Такой подход очень удобный и мы тоже на него в одном проекте перешли.<br>
+                    <a name="habracut"></a>
+                    <br>
+                    <h4>ApplicationService<br>
+                    </h4>
+                    <br>
+                    Интерфейс IApplicationService крайне прост.<br>
+                    <pre><code class="cs"><span class="keyword">public</span> <span class="keyword">interface</span> IApplicationService
+{
+   <span class="keyword">void</span> Execute(ICommand cmd);
+}
+</code></pre>
+                    <br>
+                    В методом Execute мы передаем любые команды и надеемся, что что сервис их перенаправит на нужный обработчик.<br>
+                    <br>
+                    Так как у Рината в примере только один аггрегат Customer, то и сервис тоже только один CustomerApplicationService. Собственно поэтому нет необходимости выносить какую-либо логику в базовый класс. Отличное решение для примера на мой взгляд.<br>
+                    <br>
+                    Метод Execute передает обработку комманды одной из перегрузок метода When подходящей по сигнатуре. Реализация метода Execute очень простая с использованием динамиков, и не надо бежать рефлексией по всем методам.<br>
+                    <pre><code class="cs"><span class="keyword">public</span> <span class="keyword">void</span> Execute(ICommand cmd)
+{
+   <span class="comment">// pass command to a specific method named when</span>
+   <span class="comment">// that can handle the command</span>
+   ((dynamic)<span class="keyword">this</span>).When((dynamic)cmd);
+}
+</code></pre>
+                    <br>
+                    Начнем с комманды создания — CreateCustomer.<br>
+                    <pre><code class="cs">[Serializable]
+<span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> CreateCustomer : ICommand
+{
+   <span class="keyword">public</span> CustomerId Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+   <span class="keyword">public</span> <span class="keyword">string</span> Name { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+   <span class="keyword">public</span> Currency Currency { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+
+   <span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">string</span> ToString()
+   {
+       <span class="keyword">return</span> <span class="keyword">string</span>.Format(<span class="string">"Create {0} named '{1}' with {2}"</span>, Id, Name, Currency);
+   }
+}
+</code></pre>
+                    <br>
+                    В реальном проекте у вас между UI и ApplicationService скорее всего будет message queue, ну а для примера Ринат ограничился прямой передачей комманды объекту апликейшен сервиса (см. class ApplicationServer).<br>
+                    После того, как команда CreateCustomer попадает в метод Execute, она перенаправляется в метод When.<br>
+                    <pre><code class="cs"><span class="keyword">public</span> <span class="keyword">void</span> When(CreateCustomer c)
+{
+   Update(c.Id, a =&gt; a.Create(c.Id,c.Name, c.Currency, _pricingService, DateTime.UtcNow));
+}
+</code></pre>
+                    <br>
+                    В метод Update мы передаем айдишку агрегата и экшен который вызывает метод изменения состояния аггрегата. Вообще на мой взгляд лучше не делать метод Create у аггрегата, а создать еще один конструктор, так как вызов метода Create в данном контексте выглядит немного странным. Мы вроде и создаем агрегат, но почему-то метод Create передаем как метод изменения состояния. С конструктором так бы уже не получилось.<br>
+                    <br>
+                    Вернемся к методу Update, задача у него следующая — 1) загрузить все события для текущего аггрегата, 2) создать агрегат и восстановить его состояние использую загруженные события, 3) выполнить переданное действие Action execute над аггрегатом и 4) сохранить новые события если они есть.<br>
+                    <pre><code class="cs"><span class="keyword">void</span> Update(CustomerId id, Action&lt;Customer&gt; execute)
+{
+   <span class="comment">// Load event stream from the store</span>
+   EventStream stream = _eventStore.LoadEventStream(id);
+   <span class="comment">// create new Customer aggregate from the history</span>
+   Customer customer = <span class="keyword">new</span> Customer(stream.Events);
+   <span class="comment">// execute delegated action</span>
+   execute(customer);
+   <span class="comment">// append resulting changes to the stream</span>
+   _eventStore.AppendToStream(id, stream.Version, customer.Changes);
+}
+</code></pre>
+                    <br>
+                    <br>
+                    <h4>Восстановление состояния</h4>
+                    <br>
+                    В примере, который я показывал в прошлой статье состояние аггрегата хранилось в виде private полей в классе аггрегата. Это не совсем удобно если вы захотите добавить snapshot’ы, т.к. придется как-то высасывать состояние какждый раз или использовать рефлексию. У Рината гораздо более удобный подход — для состояние отдельный класс CustomerState, что позволяет вынести методы проекции из аггрегата и гораздо проще сохранять и загружать snapshot’ы, хоть их и нет в примере.<br>
+                    Как видно, в конструктор агрегату передается список событий этого же аггрегата, как не сложно догадаться, для того чтобы он восстановил своё состояние.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           <br>
+                    Агрегат в свою очередь делегирует восстановление состояние классу CustomerState.<br>
+                    <pre><code class="cs"><span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;summary&gt;</span></span>
+<span class="comment"><span class="xmlDocTag">///</span> Aggregate state, which is separate from this class in order to ensure,</span>
+<span class="comment"><span class="xmlDocTag">///</span> that we modify it ONLY by passing events.</span>
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;/summary&gt;</span></span>
+<span class="keyword">readonly</span> CustomerState _state;
+
+<span class="keyword">public</span> Customer(IEnumerable&lt;IEvent&gt; events)
+{
+   _state = <span class="keyword">new</span> CustomerState(events);
+}
+</code></pre>
+                    <br>
+                    Приведу код всего класса CustomerState, лишь уберу несколько методов проекции When.<br>
+                    <pre><code class="cs"><span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;summary&gt;</span></span>
+<span class="comment"><span class="xmlDocTag">///</span> This is the state of the customer aggregate.</span>
+<span class="comment"><span class="xmlDocTag">///</span> It can be mutated only by passing events to it.</span>
+<span class="comment"><span class="xmlDocTag">///</span> <span class="xmlDocTag">&lt;/summary&gt;</span></span>
+<span class="keyword">public</span> <span class="keyword">class</span> CustomerState
+{
+   <span class="keyword">public</span> <span class="keyword">string</span> Name { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }
+   <span class="keyword">public</span> <span class="keyword">bool</span> Created { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }
+   <span class="keyword">public</span> CustomerId Id { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }
+   <span class="keyword">public</span> <span class="keyword">bool</span> ConsumptionLocked { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }
+   <span class="keyword">public</span> <span class="keyword">bool</span> ManualBilling { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }
+   <span class="keyword">public</span> Currency Currency { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }
+   <span class="keyword">public</span> CurrencyAmount Balance { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }
+
+   <span class="keyword">public</span> <span class="keyword">int</span> MaxTransactionId { <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; }
+
+   <span class="keyword">public</span> CustomerState(IEnumerable&lt;IEvent&gt; events)
+   {
+       <span class="keyword">foreach</span> (<span class="keyword">var</span> e <span class="keyword">in</span> events)
+       {
+           Mutate(e);
+       }
+   }
+...
+   <span class="keyword">public</span> <span class="keyword">void</span> When(CustomerCreated e)
+   {
+       Created = <span class="keyword">true</span>;
+       Name = e.Name;
+       Id = e.Id;
+       Currency = e.Currency;
+       Balance = <span class="keyword">new</span> CurrencyAmount(<span class="number">0</span>, e.Currency);
+   }
+
+   <span class="keyword">public</span> <span class="keyword">void</span> When(CustomerRenamed e)
+   {
+       Name = e.Name;
+   }
+
+   <span class="keyword">public</span> <span class="keyword">void</span> Mutate(IEvent e)
+   {
+       <span class="comment">// .NET magic to call one of the 'When' handlers with</span>
+       <span class="comment">// matching signature</span>
+       ((dynamic) <span class="keyword">this</span>).When((dynamic)e);
+   }
+}
+</code></pre>
+                    <br>
+                    Как видно в конструкторе мы форычем бежим по переданным ивентам, и передаем их в метод Mutate, который в свою очередь напрявляет их дальше в подходящий метод проекции.<br>
+                    Можно заметить что все проперти имеют private setter метод, что гарантирует что состояние извне мы можем изменить только передав соответствующее событие.<br>
+                    <br>
+                    Состояние восстановили, теперь можно и попробовать его изменить. Вернемся немного назад к методу изменения состояние. Так как я начал разбираться с коммандой CreateCustomer, то и у агрегата посмотрим метод Create.<br>
+                    <pre><code class="cs"><span class="keyword">public</span> <span class="keyword">void</span> Create(CustomerId id, <span class="keyword">string</span> name, Currency currency, IPricingService service, DateTime utc)
+{
+   <span class="keyword">if</span> (_state.Created)
+       <span class="keyword">throw</span> <span class="keyword">new</span> InvalidOperationException(<span class="string">"Customer was already created"</span>);
+   Apply(<span class="keyword">new</span> CustomerCreated
+       {
+           Created = utc,
+           Name = name,
+           Id = id,
+           Currency = currency
+       });
+
+   <span class="keyword">var</span> bonus = service.GetWelcomeBonus(currency);
+   <span class="keyword">if</span> (bonus.Amount &gt; <span class="number">0</span>)
+       AddPayment(<span class="string">"Welcome bonus"</span>, bonus, utc);
+}
+</code></pre>
+                    <br>
+                    Здесь самое место сделать проверку наших бизнесс правил, так как у нас есть доступ к актуальному состоянию агрегата. У нас есть бизнесс правило что Customer может быть создан лишь один раз ( врочем еще есть и техническое ограничение), поэтому при попытки вызвать Create на уже созданном агрегате мы бросаем эксепшен.<br>
+                    Если же все бизнесс правила удовлетворены то в метод Apply передаем событие CustomerCreated. Метод Apply очень прост, лишь передает событие объекту состояния и добавляет его в список текущих изменений.<br>
+                    <pre><code class="cs"><span class="keyword">public</span> <span class="keyword">readonly</span> IList&lt;IEvent&gt; Changes = <span class="keyword">new</span> List&lt;IEvent&gt;();
+<span class="keyword">readonly</span> CustomerState _state;
+
+<span class="keyword">void</span> Apply(IEvent e)
+{
+   <span class="comment">// pass each event to modify current in-memory state</span>
+   _state.Mutate(e);
+   <span class="comment">// append event to change list for further persistence</span>
+   Changes.Add(e);
+}
+</code></pre>
+                    <br>
+                    В большенству случаев на одну операцию с аггрегатом приходится одно событие. Но вот как раз в случае с методом Create событий может быть два.<br>
+                    После того как мы передали в метод Apply событие CustomerCreate, мы может добавить текущему кастомеру приветственный бонус, если удовлетворяетя бизнесс правило что сумма бонуса должена быть больше нуля. В таком случае вызывается метод агрегата AddPayment, который не сореджит никаких проверок а просто инициирует событие CustomerPaymentAdded.<br>
+                    <pre><code class="cs"><span class="keyword">public</span> <span class="keyword">void</span> AddPayment(<span class="keyword">string</span> name, CurrencyAmount amount, DateTime utc)
+{
+   Apply(<span class="keyword">new</span> CustomerPaymentAdded()
+       {
+           Id = _state.Id,
+           Payment = amount,
+           NewBalance = _state.Balance + amount,
+           PaymentName = name,
+           Transaction = _state.MaxTransactionId + <span class="number">1</span>,
+           TimeUtc = utc
+       });
+}
+</code></pre>
+                    <br>
+                    Теперь предстоит сохранить новые события и опубликовать их в Read model. Подозреваю что это делает следующая строчка.<br>
+                    <pre><code class="cs"><span class="comment">// append resulting changes to the stream</span>
+_eventStore.AppendToStream(id, stream.Version, customer.Changes);
+</code></pre>
+                    <br>
+                    Убедимся…<br>
+                    <pre><code class="cs"><span class="keyword">public</span> <span class="keyword">void</span> AppendToStream(IIdentity id, <span class="keyword">long</span> originalVersion, ICollection&lt;IEvent&gt; events)
+{
+   <span class="keyword">if</span> (events.Count == <span class="number">0</span>)
+       <span class="keyword">return</span>;
+   <span class="keyword">var</span> name = IdentityToString(id);
+   <span class="keyword">var</span> data = SerializeEvent(events.ToArray());
+   <span class="keyword">try</span>
+   {
+       _appendOnlyStore.Append(name, data, originalVersion);
+   }
+   <span class="keyword">catch</span>(AppendOnlyStoreConcurrencyException e)
+   {
+       <span class="comment">// load server events</span>
+       <span class="keyword">var</span> server = LoadEventStream(id, <span class="number">0</span>, <span class="keyword">int</span>.MaxValue);
+       <span class="comment">// throw a real problem</span>
+       <span class="keyword">throw</span> OptimisticConcurrencyException.Create(server.Version, e.ExpectedStreamVersion, id, server.Events);
+   }
+
+   <span class="comment">// technically there should be a parallel process that queries new changes</span>
+   <span class="comment">// from the event store and sends them via messages (avoiding 2PC problem).</span>
+   <span class="comment">// however, for demo purposes, we'll just send them to the console from here</span>
+   Console.ForegroundColor = ConsoleColor.DarkGreen;
+   <span class="keyword">foreach</span> (<span class="keyword">var</span> @<span class="keyword">event</span> <span class="keyword">in</span> events)
+   {
+       Console.WriteLine(<span class="string">"  {0} r{1} Event: {2}"</span>, id,originalVersion, @<span class="keyword">event</span>);
+   }
+   Console.ForegroundColor = ConsoleColor.DarkGray;
+}
+</code></pre>
+                    <br>
+                    Ну почти угодал. События сериализуются и сохраняются в append only store (удалять и изменять их мы то не собираемся). Но вот вместо того чтобы отправить их в read-model (на презентационный уровень), Ринат просто выводит их на консоль.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <br>
+                    Впрочем для примера этого достаточно.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <br>
+                    Если вы хотите посмотреть как это все будет работать с очередью сообщений можете посмотреть <a href="https://github.com/AlexShkor/CQRS-Event-Sourcing-Sample--ASP.NET-MVC-">пример</a> на гитхабе из моей предыдущей статьи. Я его немного изменил и тоже внес часть инфраструктуры Event Sourcing’a в солюшен. На этом примере я хочу показать как можно добавить снэпшоты.<br>
+                    <br>
+                    <h4>Snapshots</h4>
+                    <br>
+                    Снэпшоты нужны чтобы делать промежуточные снимки состояния аггрегата. Это позволяем не закгружать весь поток событий агрегата, а лишь только те которые произошли после того как мы сделали последний снэпшот.<br>
+                    Итак посмотрим на реализацию.<br>
+                    В классе UserCommandHandler есть метод Update очень похожий на тот что у Рината, но у меня он еще сохраняет и загружает снэпшоты. Снэпшоты делаем через каждые 100 версий.<br>
+                    <pre><code class="cs"><span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">int</span> SnapshotInterval = <span class="number">100</span>;
+</code></pre>
+                    <br>
+                    Сначала поднимаем из репозитория снэпшот, потом загружаем поток событий которые произошли после того как мы сделали этот снэпшот. Затем передаем все это конструктору агрегата.<br>
+                    <pre><code class="cs"><span class="keyword">private</span> <span class="keyword">void</span> Update(<span class="keyword">string</span> userId, Action&lt;UserAR&gt; updateAction)
+{
+   <span class="keyword">var</span> snapshot = _snapshotRepository.Load(userId);
+   <span class="keyword">var</span> startVersion = snapshot == <span class="keyword">null</span> ? <span class="number">0</span> : snapshot.StreamVersion + <span class="number">1</span>;
+   <span class="keyword">var</span> stream = _eventStore.OpenStream(userId, startVersion, <span class="keyword">int</span>.MaxValue);
+   <span class="keyword">var</span> user = <span class="keyword">new</span> UserAR(snapshot, stream);
+   updateAction(user);
+   <span class="keyword">var</span> originalVersion = stream.GetVersion();
+   _eventStore.AppendToStream(userId, originalVersion, user.Changes);
+   <span class="keyword">var</span> newVersion = originalVersion + <span class="number">1</span>;
+   <span class="keyword">if</span> (newVersion % SnapshotInterval == <span class="number">0</span>)
+   {
+       _snapshotRepository.Save(<span class="keyword">new</span> Snapshot(userId, newVersion,user.State));
+   }
+}
+</code></pre>
+                    <br>
+                    В конструкторе пытаемся достать состояние из снэпшота или создаем новое состояние если нету снэпшота. На полученном состоянии проигрываем все недостающие события, и в итоге получаем актуальную версию агрегата.<br>
+                    <pre><code class="cs"><span class="keyword">public</span> UserAR(Snapshot snapshot, TransitionStream stream)
+{
+   _state = snapshot != <span class="keyword">null</span> ? (UserState) snapshot.Payload : <span class="keyword">new</span> UserState();
+   <span class="keyword">foreach</span> (<span class="keyword">var</span> transition <span class="keyword">in</span> stream.Read())
+   {
+       <span class="keyword">foreach</span> (<span class="keyword">var</span> @<span class="keyword">event</span> <span class="keyword">in</span> transition.Events)
+       {
+           _state.Mutate((IEvent) @<span class="keyword">event</span>.Data);
+       }
+   }
+}
+</code></pre>
+                    <br>
+                    После манипуляций с агрегатом, проверяем кратна ли версия агрегата интервалу через который мы делаем снэпшоты, и если это так, то сохраняем новый снэпшот в репозиторий. Чтобы получить из UserCommandHandler’a состояние агрегата пришлось сделать для него internal getter свойство State.<br>
+                    <br>
+                    Вот и все, теперь у нас есть снэпшоты, что позволило намного быстрее востанавливать состояние агрегата если у него очень много событий.<br>
+                    <br>
+                    <h4>Feedback</h4>
+                    <br>
+                    Если вам интересна тема CQRS+ES пожалуйста не стесняйтесь задавать вопросы в комментариях. Так же можете писать мне в скайп если нету ака на хабре. Недавно мне в скайп постучался один товарищ из Челябинска и благодаря его вопросам у меня появилось много идей для следующей статьи. Так как в моем распоряжении сейчас побольше свободного времени то я планирую писать их почаще. 
+  	
+	
+
+    
+
+
+                </div>
+
+
+
+            </div>
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'shkor'; // required: replace example with your forum shortname
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function () {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+        </div>
+
+        <hr>
+
+        <div class="footer">
+            <p>© Alex Shkor 2013</p>
+        </div>
+
+    </div>
+    <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/scripts/jquery.js"></script>
+    <script src="/scripts/bootstrap-transition.js"></script>
+    <script src="/scripts/bootstrap-alert.js"></script>
+    <script src="/scripts/bootstrap-modal.js"></script>
+    <script src="/scripts/bootstrap-dropdown.js"></script>
+    <script src="/scripts/bootstrap-scrollspy.js"></script>
+    <script src="/scripts/bootstrap-tab.js"></script>
+    <script src="/scripts/bootstrap-tooltip.js"></script>
+    <script src="/scripts/bootstrap-popover.js"></script>
+    <script src="/scripts/bootstrap-button.js"></script>
+    <script src="/scripts/bootstrap-collapse.js"></script>
+    <script src="/scripts/bootstrap-carousel.js"></script>
+    <script src="/scripts/bootstrap-typeahead.js"></script>
+
+
+
+</body>
+</html>

@@ -8,9 +8,9 @@
     <meta name="author" content="Alex Shkor">
 
     <!-- Le styles -->
-    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
     
-    <link href="./bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -24,9 +24,6 @@
                     <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
   
-    
-
-        <link href="./css/site.css" rel="stylesheet"></head>
 
   <body>
 
@@ -50,19 +47,26 @@
         </div><!-- /.navbar -->
       </div>
       <!-- Example row of columns -->
-      <div class="row-fluid">
-              <h3>Heading</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details »</a></p>
-      </div>
         <div class="row-fluid">
-              <h3>Heading</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details »</a></p>
-      </div><div class="row-fluid">
-              <h3>Heading</h3>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details »</a></p>
+              <h3>Введение в CQRS + Event Sourcing: Часть 2</h3>
+            <p>
+  	В <a href="/posts/cqrs_and_es_part1.htm">прошлой статье</a> я начал с основ CQRS + Event Sourcing. В этот раз я предлагаю продолжить и более подробно посмотреть на ES.<br>
+<br>
+В <a href="https://github.com/AlexShkor/CQRS-Event-Sourcing-Sample--ASP.NET-MVC-">примере</a> который я выкладывал с моей прошлой статьей магия Event Sourcing’а была скрыта за абстракцией IRepository и двумя методами IRepository.Save() и IRepository.GetById&lt;&gt;(). <br>
+Для того чтобы поподробнее разобраться что происходит я решил рассказать о процессе сохранения и загрузки агрегата из Event Store на примере проекта <a href="https://github.com/Lokad/lokad-iddd-sample">Lokad IDDD Sample</a> от Рината Абдулина. У него в аппликейшен сервисах идет прямое обращение к Event Store, без дополнительных абстракций, поэтому все выглядит очень наглядно. Application Service — это аналог CommandHandler, но который обрабатывает все комманды одного агрегата. Такой подход очень удобный и мы тоже на него в одном проекте перешли.<br>
+ 
+  	
+  		
+  		
+  	
+            </p>
+            <p><a class="btn" href="/posts/cqrs_and_es_part2.htm">Далее »</a></p>
+      </div>
+        
+        <div class="row-fluid">
+              <h3>Введение в CQRS + Event Sourcing: Часть 1. Основы</h3>
+              <p>В первый раз я услышал о CQRS, когда устроился на новую работу. В компании, в которой работаю и по сей день, мне сразу сказали что на проекте над которым я буду работать используется CQRS, Event Sourcing, и MongoDB в качестве базы данных. И этого всего я слышал только о MongoDB. Попытавшись вникнуть в CQRS, я не сразу понял все тонкости данного подхода, но почему-то мне понравилась идея разделения модели взаимодействия с данными на две — read и write. Возможно потому что она как-то перекликалась с парадигмой программирования “разделение обязанностей”, возможно потому что была очень в духе DDD.</p>
+              <p><a class="btn" href="/posts/cqrs_and_es_part1.htm">Далее »</a></p>
       </div>
       <hr>
 
@@ -75,19 +79,19 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./scripts/jquery.js"></script>
-    <script src="./scripts/bootstrap-transition.js"></script>
-    <script src="./scripts/bootstrap-alert.js"></script>
-    <script src="./scripts/bootstrap-modal.js"></script>
-    <script src="./scripts/bootstrap-dropdown.js"></script>
-    <script src="./scripts/bootstrap-scrollspy.js"></script>
-    <script src="./scripts/bootstrap-tab.js"></script>
-    <script src="./scripts/bootstrap-tooltip.js"></script>
-    <script src="./scripts/bootstrap-popover.js"></script>
-    <script src="./scripts/bootstrap-button.js"></script>
-    <script src="./scripts/bootstrap-collapse.js"></script>
-    <script src="./scripts/bootstrap-carousel.js"></script>
-    <script src="./scripts/bootstrap-typeahead.js"></script>
+    <script src="/scripts/jquery.js"></script>
+    <script src="/scripts/bootstrap-transition.js"></script>
+    <script src="/scripts/bootstrap-alert.js"></script>
+    <script src="/scripts/bootstrap-modal.js"></script>
+    <script src="/scripts/bootstrap-dropdown.js"></script>
+    <script src="/scripts/bootstrap-scrollspy.js"></script>
+    <script src="/scripts/bootstrap-tab.js"></script>
+    <script src="/scripts/bootstrap-tooltip.js"></script>
+    <script src="/scripts/bootstrap-popover.js"></script>
+    <script src="/scripts/bootstrap-button.js"></script>
+    <script src="/scripts/bootstrap-collapse.js"></script>
+    <script src="/scripts/bootstrap-carousel.js"></script>
+    <script src="/scripts/bootstrap-typeahead.js"></script>
 
   
 
