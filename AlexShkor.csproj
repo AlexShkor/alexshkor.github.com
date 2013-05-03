@@ -37,6 +37,8 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="blog.htm" />
+    <Content Include="_template.htm" />
     <Content Include="css\site.css" />
     <Content Include="index.htm" />
     <Content Include="scripts\bootstrap-alert.js" />
