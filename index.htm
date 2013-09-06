@@ -1,120 +1,1010 @@
 ﻿<!DOCTYPE html>
-<!-- saved from url=(0062)http://twitter.github.io/bootstrap/examples/justified-nav.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html class="csstransforms csstransforms3d csstransitions">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Alex Shkor</title>
+    <title>Alex Shkor | Full Stack Developer | CQRS + Event Sourcing</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Alex Shkor's personal page.">
-    <meta name="author" content="Alex Shkor">
 
-        <link href="/css/bootstrap.css" rel="stylesheet">
-    
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="/content/jquery.min.js"></script>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- Bootstrap -->
+    <link href="/content/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/content/bootstrap-responsive.min.css" rel="stylesheet">
+    <script src="/content/bootstrap.min.js"></script>
+
+    <!-- Glyphicons -->
+    <link href="/content/glyphicons.css" rel="stylesheet" media="screen">
+
+    <!-- Plugins -->
+    <script src="/content/jquery.easing.1.3.js"></script>
+    <script src="/content/jquery.isotope.min.js"></script>
+    <script src="/content/jquery.ba-resize.min.js"></script>
+
+    <link href="/content/prettyPhoto.css" rel="stylesheet" media="screen">
+    <script src="/content/jquery.prettyPhoto.js"></script>
+
+    <script src="/content/klass.min.js"></script>
+    <script src="/content/code.photoswipe.jquery-3.0.4.min.js"></script>
+    <link href="/content/photoswipe.css" rel="stylesheet" media="screen">
+
+    <!-- Theme -->
+    <link href="/content/css" rel="stylesheet" type="text/css">
+    <link href="/content/style.css" rel="stylesheet" media="screen">
+    <script src="/content/scripts.js"></script>
+
+    <!-- Skin -->
+    <link type="text/css" rel="stylesheet" href="/content/body.css" media="screen">
+    <link type="text/css" rel="stylesheet" href="/content/red_theme.css" media="screen">
+
     <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
+	<link rel="stylesheet" type="text/css" href="./css/ie.css" />
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.io/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="http://twitter.github.io/bootstrap/assets/ico/favicon.png">
-  
-    
+    <!-- PRINT CSS -->
+    <link type="text/css" rel="stylesheet" href="/content/print.css" media="print">
+</head>
 
-        <link href="./css/site.css" rel="stylesheet"></head>
+<body class="backgrounded" data-spy="scroll" data-target=".sidebar-nav">
 
-  <body>
+
+    <!--<link type="text/css" rel="stylesheet" href="/content/configurator.css">-->
+
+
+    <!--    <link type="text/css" rel="stylesheet" href="/content/colorpicker.css">
+    <link type="text/css" rel="stylesheet" href="/content/reveal.css">-->
+
+
+
+    <!--<script src="/content/configurator.js"></script>
+            <script type="text/javascript" src="/content/colorpicker.js"></script>
+            <script type="text/javascript" src="/content/eye.js"></script>
+            <script type="text/javascript" src="/content/utils.js"></script>
+            <script type="text/javascript" src="/content/layout.js"></script>
+            <script type="text/javascript" src="/content/jquery.reveal.js"></script>-->
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top visible-phone noprint" id="phone-navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="btn btn-navbar" href="#" style="padding: 5px 10px 3px;"><i class="icon-white icon-download "></i></a>
+                <a class="brand" href="#">Alex Shkor</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="#about-me" class="scroller">About me</a></li>
+                        <li><a href="#personal-information" class="scroller">Personal Info</a></li>
+                        <li><a href="#employment" class="scroller">Employment</a></li>
+                        <li><a href="#education" class="scroller">Education</a></li>
+                        <li><a href="#skills" class="scroller">Skills</a></li>
+                        <li><a href="#testimonials" class="scroller">Testimonials</a></li>
+                        <li><a href="#hobbies" class="scroller">Hobbies</a></li>
+                        <li><a href="#portfolio" class="scroller">Portfolio</a></li>
+                        <li><a href="#blog" class="scroller">Blog</a></li>
+                        <li><a href="#contact" class="scroller">Contact</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <!--/#phone-navbar -->
 
     <div class="container">
+        <div class="row" id="content">
 
-      <div class="masthead">
-        <h3 class="muted">Alex Shkor</h3>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <ul class="nav">
-                <li class="active"><a href="index.htm">Home</a></li>
-                <li><a href="blog.htm">Blog</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Downloads</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
+            <!-- If you want the sidebar placed on the left, place it just after this and change the sbright class by sbleft -->
+
+            <!-- MAIN CONTENT -->
+            <!--/span9-->
+            <!-- END OF THE MAIN CONTENT -->
+
+            <!-- Sidebar placed on the RIGHT of the screen -->
+            <div class="span9 equal" id="main-content">
+
+                <div class="tools noprint visible-desktop">
+                    <a href="javascript:if(window.print)window.print()" data-placement="bottom" class="tips glyphicons print" data-original-title="Print"><i></i></a>
+                    <a href="#" data-placement="bottom" class="tips glyphicons file_import" data-original-title="Download"><i></i></a>
+                </div>
+
+
+                <div class="section first-section" id="about-me">
+                    <div class="row author">
+                        <div class="span3">
+                            <img class="img-rounded" src="/content/alexshkor.jpg" alt="">
+                        </div>
+                        <div class="span6">
+                            <h1>Alex Shkor</h1>
+                            <br>
+                            <h2 class="primary-color">Full Stack Developer</h2>
+                        </div>
+                    </div>
+
+
+
+                    <div class="well">
+                        <h3>I am Lead Software Engineer @ <a href="http://paralect.com/">Paralect.com</a></h3>
+                        <p class="lead">
+                            I'm full stack ASP.NET MVC developer focused on modern technologies stack capable of delivering complete web solutions. 
+                            I have strong background in computer science, graduated BSUIR Computer Science in 2013, and already have:
+                            <br />
+                            7+ years of experience with programming;
+                               <br />
+                            5+ years of experience with C#.NET;
+                            <br />
+                            4+ years  of professional web-development experience;
+                               <p><a href="http://blog.shkor.com" title="Paralect" class="noprint">→ View my blog (in Russian)</a></p>
+                        </p>
+                    </div>
+
+                    <div class="social-media noprint">
+                        <h5>Follow me</h5>
+                        <div>
+                            <div class="tips icon-btn" data-placement="bottom" data-original-title="Facebook"><a href="https://www.facebook.com/alex.shkor" class="glyphicons white facebook"><i></i></a></div>
+                            <div class="tips icon-btn" data-placement="bottom" data-original-title="Twitter"><a href="https://twitter.com/AlexShkor" class="glyphicons white twitter"><i></i></a></div>
+                            <div class="tips icon-btn" data-placement="bottom" data-original-title="Linkedin"><a href="https://www.linkedin.com/in/alexshkor" class="glyphicons white linked_in"><i></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <!--/section-->
+
+                <div class="section" id="personal-information">
+                    <h2 class="section-title"><span class="glyphicons user"><i></i></span>Personal Information<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+
+                    <div class="row">
+                        <div class="infoline span9 first">
+                            <div class="row">
+                                <div class="span2 muted">Date of birth</div>
+                                <div class="span7">January 9rd, 1990</div>
+                            </div>
+                        </div>
+                        <span class="clear"></span>
+
+                        <div class="infoline span9">
+                            <div class="row">
+                                <div class="span2 muted">Address</div>
+                                <div class="span7">
+                                    Pulihova, 27, 65<br>
+                                    Minsk<br>
+                                    Belarus
+                                                           
+                                </div>
+                            </div>
+                        </div>
+                        <span class="clear"></span>
+
+                        <div class="infoline span9">
+                            <div class="row">
+                                <div class="span2 muted">Email</div>
+                                <div class="span7">alex@shkor.com</div>
+                            </div>
+                        </div>
+                        <span class="clear"></span>
+
+                        <div class="infoline span9">
+                            <div class="row">
+                                <div class="span2 muted">Phone</div>
+                                <div class="span7">
+                                    +375259005003
+                                                           
+                                </div>
+                            </div>
+                        </div>
+                        <span class="clear"></span>
+
+                        <div class="infoline span9 last">
+                            <div class="row">
+                                <div class="span2 muted">Website</div>
+                                <div class="span7"><a href="http://shkor.com" title="">shkor.com</a></div>
+                            </div>
+                        </div>
+                        <span class="clear"></span>
+
+                    </div>
+                </div>
+                <!--/section-->
+
+                <div class="section" id="employment">
+                    <h2 class="section-title"><span class="glyphicons share_alt"><i></i></span>Employment<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+
+                    <div class="timeline">
+
+                        <div class="timeline-item">
+                            <div class="timeline-item-date">2011 - now</div>
+                            <div class="timeline-item-trigger"><span class="glyphicons white circle_minus" data-toggle="collapse" data-target="#position1"><i></i></span></div>
+                            <div class="timeline-arrow"><i></i></div>
+                            <div class="timeline-item-content">
+                                <h3 class="timeline-item-title" data-toggle="collapse" data-target="#position1">Lead Software Engineer @ Paralect</h3>
+                                <div class="collapse in" id="position1">
+                                    <p><small class="muted">from 2011 to present day</small></p>
+                                    <h4 class="media-heading primary-color">Lorem ipsum dolor sit amet</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+                                    <p><a href="http://paralect.com" title="Paralect" class="noprint">→ View website</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/timeline-item-->
+                        <span class="clear"></span>
+
+                        <div class="timeline-item">
+                            <div class="timeline-item-date">2010 - 2011</div>
+                            <div class="timeline-item-trigger"><span class="glyphicons white circle_plus" data-toggle="collapse" data-target="#position2"><i></i></span></div>
+                            <div class="timeline-arrow"><i></i></div>
+                            <div class="timeline-item-content">
+                                <h3 class="timeline-item-title" data-toggle="collapse" data-target="#position2">Web-developer @ ITransition</h3>
+                                <div class="collapse" id="position2">
+                                    <p><small class="muted">from 2010 to 2011</small></p>
+                                    <h4 class="media-heading primary-color">Lorem ipsum dolor sit amet</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/timeline-item-->
+                        <span class="clear"></span>
+
+                        <div class="timeline-item">
+                            <div class="timeline-item-date">2006 - 2010</div>
+                            <div class="timeline-item-trigger"><span class="glyphicons white circle_plus" data-toggle="collapse" data-target="#position3"><i></i></span></div>
+                            <div class="timeline-arrow"><i></i></div>
+                            <div class="timeline-item-content">
+                                <h3 class="timeline-item-title" data-toggle="collapse" data-target="#position3">Independed developer</h3>
+                                <div class="collapse" id="position3">
+                                    <p><small class="muted">from 2006 to 2010</small></p>
+                                    <h4 class="media-heading primary-color">Lorem ipsum dolor sit amet</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/timeline-item-->
+                        <span class="clear"></span>
+
+                    </div>
+                    <!--/timeline -->
+                </div>
+                <!--/section-->
+
+
+                <div class="section" id="education">
+                    <h2 class="section-title"><span class="glyphicons certificate"><i></i></span>Education<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+
+                    <div class="timeline">
+
+                        <div class="timeline-item">
+                            <div class="timeline-item-date">2008 - 2013</div>
+                            <div class="timeline-item-trigger"><span class="glyphicons white circle_minus" data-toggle="collapse" data-target="#education1"><i></i></span></div>
+                            <div class="timeline-arrow"><i></i></div>
+                            <div class="timeline-item-content">
+                                <h3 class="timeline-item-title" data-toggle="collapse" data-target="#education1">BSUIR - Computer Science</h3>
+                                <div class="collapse in" id="education1">
+                                    <p><small class="muted">from 2008 to 2013</small></p>
+                                    <h4 class="media-heading primary-color">Belarusian State University of Informatics and Radioelectronics</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/timeline-item-->
+                        <span class="clear"></span>
+
+                        <div class="timeline-item">
+                            <div class="timeline-item-date">2005 - 2008</div>
+                            <div class="timeline-item-trigger"><span class="glyphicons white circle_plus" data-toggle="collapse" data-target="#education2"><i></i></span></div>
+                            <div class="timeline-arrow"><i></i></div>
+                            <div class="timeline-item-content">
+                                <h3 class="timeline-item-title" data-toggle="collapse" data-target="#education2">Self education</h3>
+                                <div class="collapse" id="education2">
+                                    <p><small class="muted">from 2005 to 2008</small></p>
+                                    <h4 class="media-heading primary-color">Lorem ipsum dolor sit amet</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/timeline-item-->
+                        <span class="clear"></span>
+                    </div>
+                    <!--/timeline -->
+
+                </div>
+                <!--/section-->
+
+
+                <div class="section skills" id="skills">
+                    <h2 class="section-title"><span class="glyphicons cogwheels"><i></i></span>Skills<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+                    <h3>Progress</h3>
+
+                    <div class="row">
+                        <div class="span2">Print</div>
+                        <div class="span3">
+                            <span class="printonly">Good</span>
+                            <div class="progress">
+                                <div class="bar" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span2">Web</div>
+                        <div class="span3">
+                            <span class="printonly">Very good</span>
+                            <div class="progress">
+                                <div class="bar" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span2">User Interface</div>
+                        <div class="span3">
+                            <span class="printonly">Expert</span>
+                            <div class="progress">
+                                <div class="bar" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h3>Software Development</h3>
+
+                    <div class="row">
+                        <div class="span2">Programming Languages</div>
+                        <div class="span7">
+                            <span class="label">C#</span>
+                            <span class="label">JavaScript</span>
+                        </div>
+                    </div>
+                    <span class="spacer"></span>
+                    <div class="row">
+                        <div class="span2">Frameworks</div>
+                        <div class="span7">
+                            <span class="label">ASP.NET MVC</span>
+                            <span class="label">ServiceStack</span>
+                            <span class="label">NancyFX</span>
+                            <span class="label">SignalR</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/section-->
+
+                <div class="section" id="testimonials">
+                    <h2 class="section-title"><span class="glyphicons comments"><i></i></span>Testimonials<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+
+                    <div class="testimonial">
+                        <blockquote>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <p>Integer posuere erat a ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <small><a href="#" title="">Mike Johanson</a><cite> | SEO @ SDA Company</cite></small>
+                        </blockquote>
+                    </div>
+
+                    <div class="testimonial">
+                        <div class="media">
+                            <img class="media-object pull-left" src="/content/80-80-portrait.jpg" alt="">
+                            <div class="media-body">
+                                <blockquote>
+                                    <p>Donec eros magna, blandit eu tempus a, ornare quis nulla. Cras gravida fringilla tellus a euismod. Curabitur risus lacus, congue eget condimentum id, feugiat et nisl. Nulla diam lacus, posuere eget gravida in, gravida id sem. Etiam pharetra ornare sollicitudin.</p>
+                                    <small><a href="#" title="">John Robinson</a><cite> | client @ Starlabs</cite></small>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+                        <blockquote>
+                            <p>Vivamus gravida convallis est, non tristique nisl pellentesque ut. Praesent congue tortor vel quam scelerisque in suscipit elit malesuada. Nam volutpat ultricies augue, ac accumsan dolor ornare eu. Nam ut egestas nulla.</p>
+                            <p>Nunc ullamcorper, nulla vitae pellentesque dictum, diam ligula iaculis ipsum, aliquam vestibulum leo libero vel turpis.</p>
+                            <small><a href="#" title="">Bob Smith</a><cite> | Designer @ ZNS Agency</cite></small>
+                        </blockquote>
+                    </div>
+
+                </div>
+                <!--/section-->
+
+                <div class="section hobbies" id="hobbies">
+                    <h2 class="section-title"><span class="glyphicons heart_empty"><i></i></span>Hobbies<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+
+                    <div class="row">
+                        <div class="span9">
+                            <span class="label tips mobtoo" data-original-title="I love sci-fy &amp; action movies">
+                                <span class="glyphicons white film"><i></i>Movies</span>
+                            </span>
+                            <span class="label tips mobtoo" data-original-title="PADI Open Waters&lt;br/&gt;About 50 dives all around the world: Thailand, Indonesia, Malaysia, Mediterranean Sea…">
+                                <span class="glyphicons white scuba_diving"><i></i>Scuba Diving</span>
+                            </span>
+                            <span class="label"><span class="glyphicons white pool"><i></i>Swimming</span></span>
+                            <span class="label"><span class="glyphicons white bicycle"><i></i>Bicycling</span></span>
+                            <span class="label"><span class="glyphicons white baseball"><i></i>Baseball</span></span>
+                            <span class="label"><span class="glyphicons white gamepad"><i></i>Video games</span></span>
+                            <span class="label"><span class="glyphicons white piano"><i></i>Piano</span></span>
+                            <span class="label"><span class="glyphicons white globe"><i></i>Traveling</span></span>
+                            <span class="label"><span class="glyphicons white cake"><i></i>Cooking</span></span>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/section-->
+
+
+
+                <div class="section clearfix noprint" id="portfolio">
+                    <h2 class="section-title"><span class="glyphicons show_thumbnails"><i></i></span>Portfolio<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+
+                    <ul class="nav nav-pills" id="portfolio-filters">
+                        <li class="active"><a href="#" data-filter="*">All</a></li>
+                        <li><a href="#" data-filter=".portfolio-type1">Type 1</a></li>
+                        <li><a href="#" data-filter=".portfolio-type2">Type 2</a></li>
+                        <li><a href="#" data-filter=".portfolio-type3">Type 3</a></li>
+                    </ul>
+
+                    <!-- Featured Portfolio items -->
+                    <div class="row isotope" id="portfolio-items" style="position: relative; overflow: hidden; height: 600px;">
+
+                        <div class="span3 portfolioitem portfolio-type1 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(0px, 0px, 0px);">
+                            <img src="/content/thumb01.jpg" alt="">
+                            <div class="portfolioitem-hoverinfo">
+                                <h3>Lorem ipsum</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                <div class="portfolioitem-actions">
+                                    <a href="/content/01.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[portfolioimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#portfolioitem-1" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Project"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/portfolioitem-->
+
+                        <div class="span3 portfolioitem portfolio-type2 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(300px, 0px, 0px);">
+                            <img src="/content/thumb02.jpg" alt="">
+                            <div class="portfolioitem-hoverinfo">
+                                <h3>Cras gravida fringilla</h3>
+                                <p>Donec eros magna, blandit eu tempus a, ornare quis nulla.</p>
+                                <div class="portfolioitem-actions">
+                                    <a href="/content/02.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[portfolioimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#portfolioitem-2" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Project"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/portfolioitem-->
+
+                        <div class="span3 portfolioitem portfolio-type3 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(600px, 0px, 0px);">
+                            <img src="/content/thumb03.jpg" alt="">
+                            <div class="portfolioitem-hoverinfo">
+                                <h3>Nulla diam lacus</h3>
+                                <p>Curabitur risus lacus, congue eget condimentum id, feugiat et nisl.</p>
+                                <div class="portfolioitem-actions">
+                                    <a href="/content/03.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[portfolioimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#portfolioitem-3" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Project"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/portfolioitem-->
+
+                        <div class="span3 portfolioitem portfolio-type1 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(0px, 300px, 0px);">
+                            <img src="/content/thumb04.jpg" alt="">
+                            <div class="portfolioitem-hoverinfo">
+                                <h3>Proin quam lacus</h3>
+                                <p>Proin quam lacus, dapibus non sodales ac, pharetra et urna.</p>
+                                <div class="portfolioitem-actions">
+                                    <a href="/content/04.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[portfolioimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#portfolioitem-4" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Project"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/portfolioitem-->
+
+                        <div class="span3 portfolioitem portfolio-type2 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(300px, 300px, 0px);">
+                            <img src="/content/thumb05.jpg" alt="">
+                            <div class="portfolioitem-hoverinfo">
+                                <h3>Tellus ligula</h3>
+                                <p>Cras vestibulum, mi aliquam molestie tincidunt, tellus ligula tempor neque. </p>
+                                <div class="portfolioitem-actions">
+                                    <a href="/content/05.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[portfolioimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#portfolioitem-5" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Project"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/portfolioitem-->
+
+                        <div class="span3 portfolioitem portfolio-type1 isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(600px, 300px, 0px);">
+                            <img src="/content/thumb07.jpg" alt="">
+                            <div class="portfolioitem-hoverinfo">
+                                <h3>In sed eleifend orci</h3>
+                                <p>Morbi ultrices ullamcorper magna, quis placerat libero pretium at.</p>
+                                <div class="portfolioitem-actions">
+                                    <a href="/content/07.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[portfolioimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#portfolioitem-6" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Project"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/portfolioitem-->
+
+
+
+                    </div>
+                    <!--/row-->
+                    <!-- /Featured Portfolio Items -->
+
+                    <div class="row" id="full-portfolio-items">
+                        <div class="span9">
+
+                            <a href="#" class="btn btn-primary hidden" id="portfolio-back">← Back to Portfolio List</a>
+
+                            <!-- This is a Portfolio item -->
+                            <div class="portfolioitem-content hidden" id="portfolioitem-1">
+                                <img src="/content/01.jpg" alt="">
+                                <h2 class="primary-color">Lorem ipsum</h2>
+
+                                <h3>Lectus tristique scelerisque</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#portfolioitem-6" class="">← Previous</a></li>
+                                    <li class="next"><a href="#portfolioitem-2" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- /Portfolio item -->
+
+                            <!-- This is a Portfolio item -->
+                            <div class="portfolioitem-content hidden" id="portfolioitem-2">
+                                <img src="/content/02.jpg" alt="">
+                                <h2 class="primary-color">Cras gravida fringilla</h2>
+
+                                <h3>Accumsan dolor ornare</h3>
+                                <p>Vivamus gravida convallis est, non tristique nisl pellentesque ut. Praesent congue tortor vel quam scelerisque in suscipit elit malesuada. Nam volutpat ultricies augue, ac accumsan dolor ornare eu. Nam ut egestas nulla. Nunc ullamcorper, nulla vitae pellentesque dictum, diam ligula iaculis ipsum, aliquam vestibulum leo libero vel turpis. Nunc cursus dignissim sodales. </p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#portfolioitem-1" class="">← Previous</a></li>
+                                    <li class="next"><a href="#portfolioitem-3" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- /Portfolio item -->
+
+                            <!-- This is a Portfolio item -->
+                            <div class="portfolioitem-content hidden" id="portfolioitem-3">
+                                <img src="/content/03.jpg" alt="">
+                                <h2 class="primary-color">Nulla diam lacus</h2>
+
+                                <h3>Etiam sagittis, felis id </h3>
+                                <p>Etiam eleifend sem ornare lacus ullamcorper interdum. Aenean nec justo nisl, vel cursus nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellentesque, eros at vestibulum feugiat, ante urna cursus turpis, in rhoncus enim lorem ac nisl. Phasellus tristique ultricies metus, a condimentum lacus sagittis non. Phasellus euismod nulla eget lacus aliquam auctor. </p>
+                                <p>Sed nisl sem, semper id sollicitudin vitae, pharetra at tellus. Ut eu sem vitae erat rhoncus posuere. Praesent hendrerit, nunc nec molestie bibendum, leo metus volutpat lacus, a luctus ante massa a lectus. Etiam sagittis, felis id dignissim pulvinar, purus lorem tempor lectus, et suscipit mauris lorem et elit. </p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#portfolioitem-2" class="">← Previous</a></li>
+                                    <li class="next"><a href="#portfolioitem-4" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- /Portfolio item -->
+
+                            <!-- This is a Portfolio item -->
+                            <div class="portfolioitem-content hidden" id="portfolioitem-4">
+                                <img src="/content/04.jpg" alt="">
+                                <h2 class="primary-color">Proin quam lacus</h2>
+
+                                <h3>Subtitle</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#portfolioitem-3" class="">← Previous</a></li>
+                                    <li class="next"><a href="#portfolioitem-5" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- /Portfolio item -->
+
+                            <!-- This is a Portfolio item -->
+                            <div class="portfolioitem-content hidden" id="portfolioitem-5">
+                                <img src="/content/05.jpg" alt="">
+                                <h2 class="primary-color">Tellus ligula</h2>
+
+                                <h3>ullam pharetra, metus id semper fringilla</h3>
+                                <p>Praesent suscipit pellentesque est, non blandit ante feugiat in. Aliquam erat volutpat. Donec lorem sem, vestibulum ac vehicula in, tempus sit amet sem. Curabitur nec ante risus. Integer libero nunc, euismod in mattis ac, auctor in arcu. Nullam pharetra, metus id semper fringilla, est lorem euismod lectus, at dignissim elit turpis et dolor. Praesent adipiscing, metus eget lacinia viverra, dolor nibh consequat erat, a rutrum leo nulla non metus. </p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#portfolioitem-4" class="">← Previous</a></li>
+                                    <li class="next"><a href="#portfolioitem-6" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- /Portfolio item -->
+
+                            <!-- This is a Portfolio item -->
+                            <div class="portfolioitem-content hidden" id="portfolioitem-6">
+                                <img src="/content/07.jpg" alt="">
+                                <h2 class="primary-color">In sed eleifend orci</h2>
+
+                                <h3>Enim mauris rhoncus elit</h3>
+                                <p>Phasellus condimentum pulvinar tincidunt. Phasellus vehicula, felis id auctor placerat, nunc magna feugiat nunc, vitae tempor metus lorem ac quam. In vel lacus nibh, a varius metus.</p>
+                                <p>Suspendisse ut tortor ligula, id fringilla mi. Curabitur bibendum tortor tempus sem posuere vehicula accumsan mauris molestie. Etiam eget nulla vel sem tristique dapibus. In orci justo, pharetra vel scelerisque eu, gravida vel felis. Etiam mattis blandit rutrum. Maecenas viverra massa sed sem feugiat sed mollis dolor venenatis. In aliquet, sem et cursus scelerisque, enim mauris rhoncus elit, sit amet ornare massa metus non lectus. </p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#portfolioitem-5" class="">← Previous</a></li>
+                                    <li class="next"><a href="#portfolioitem-1" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- /Portfolio item -->
+
+                        </div>
+                        <!--/span9-->
+
+                    </div>
+                    <!--/row-->
+
+
+
+                </div>
+                <!--/section-->
+                <span class="clear"></span>
+
+                <div class="section noprint" id="blog">
+                    <h2 class="section-title"><span class="glyphicons pencil"><i></i></span>Blog<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+
+                    <!-- Featured Blog items -->
+                    <div class="row isotope" id="blog-items" style="position: relative; overflow: hidden; height: 600px;">
+                        <div class="span3 blogitem isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(0px, 0px, 0px);">
+                            <img src="/content/thumbblog01.jpg" alt="">
+                            <h3>Lorem ipsum</h3>
+                            <div class="blogitem-date">
+                                <span class="month">JUN</span>
+                                <span class="day">15</span>
+                            </div>
+                            <div class="blogitem-hoverinfo">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                <div class="blogitem-actions">
+                                    <a href="/content/blog01.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[blogimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#blogitem-1" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Post"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3 blogitem isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(300px, 0px, 0px);">
+                            <img src="/content/thumbblog02.jpg" alt="">
+                            <h3>Cras gravida fringilla</h3>
+                            <div class="blogitem-date">
+                                <span class="month">MAY</span>
+                                <span class="day">16</span>
+                            </div>
+                            <div class="blogitem-hoverinfo">
+                                <p>Praesent congue tortor vel quam scelerisque in suscipit elit malesuada. </p>
+                                <div class="blogitem-actions">
+                                    <a href="/content/blog02.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[blogimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#blogitem-2" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Post"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3 blogitem isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(600px, 0px, 0px);">
+                            <img src="/content/thumbblog03.jpg" alt="">
+                            <h3>Nulla diam lacus</h3>
+                            <div class="blogitem-date">
+                                <span class="month">APR</span>
+                                <span class="day">22</span>
+                            </div>
+                            <div class="blogitem-hoverinfo">
+                                <p>Etiam eleifend sem ornare lacus ullamcorper interdum.</p>
+                                <div class="blogitem-actions">
+                                    <a href="/content/blog03.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[blogimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#blogitem-3" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Post"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3 blogitem isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(0px, 300px, 0px);">
+                            <img src="/content/thumbblog04.jpg" alt="">
+                            <h3>Proin quam lacus</h3>
+                            <div class="blogitem-date">
+                                <span class="month">MAR</span>
+                                <span class="day">27</span>
+                            </div>
+                            <div class="blogitem-hoverinfo" style="display: none;">
+                                <p>Proin tincidunt diam ac lectus tristique scelerisque.</p>
+                                <div class="blogitem-actions">
+                                    <a href="/content/blog04.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[blogimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#blogitem-4" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Post"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3 blogitem isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(300px, 300px, 0px);">
+                            <img src="/content/thumbblog05.jpg" alt="">
+                            <h3>Tellus ligula</h3>
+                            <div class="blogitem-date">
+                                <span class="month">FEB</span>
+                                <span class="day">13</span>
+                            </div>
+                            <div class="blogitem-hoverinfo" style="display: none;">
+                                <p>Praesent adipiscing, metus eget lacinia viverra, dolor nibh consequat erat, a rutrum leo nulla non metus. </p>
+                                <div class="blogitem-actions">
+                                    <a href="/content/blog05.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[blogimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#blogitem-5" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Post"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="span3 blogitem isotope-item" style="position: absolute; left: 0px; top: 0px; -webkit-transform: translate3d(600px, 300px, 0px);">
+                            <img src="/content/thumbblog06.jpg" alt="">
+                            <h3>In sed eleifend orci</h3>
+                            <div class="blogitem-date">
+                                <span class="month">JAN</span>
+                                <span class="day">02</span>
+                            </div>
+                            <div class="blogitem-hoverinfo" style="display: none;">
+                                <p>Curabitur bibendum tortor tempus sem posuere vehicula accumsan mauris molestie.</p>
+                                <div class="blogitem-actions">
+                                    <a href="/content/blog06.jpg" class="tips img-circle lightbox" data-placement="bottom" rel="prettyPhoto[blogimages]" data-original-title="Preview image"><span class="glyphicons white zoom_in"><i></i></span></a>
+                                    <a href="#blogitem-6" class="tips more-info img-circle" data-placement="bottom" data-original-title="View Post"><span class="glyphicons white share"><i></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--/row-->
+                    <!-- /Featured Blog items -->
+
+                    <div class="row" id="full-blog-items">
+                        <div class="span9">
+
+                            <a href="#" class="btn btn-primary hidden" id="blog-back">← Back to Blog List</a>
+
+                            <!-- This is a blog item -->
+                            <div class="blogitem-content hidden" id="blogitem-1">
+                                <img src="/content/blog01.jpg" alt="">
+                                <h2 class="primary-color">Lorem ipsum</h2>
+                                <div class="blogmeta muted">
+                                    <div><span class="glyphicons user"><i></i></span>Mike Smith</div>
+                                    <div><span class="glyphicons calendar"><i></i></span>June 15, 2012</div>
+                                    <div><span class="glyphicons inbox"><i></i></span>Category</div>
+                                    <div><span class="glyphicons tags"><i></i></span>Lorem, Ipsum, Dolor, Sit amet</div>
+                                </div>
+                                <h3>Lorem ipsum</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#blogitem-6" class="">← Previous</a></li>
+                                    <li class="next"><a href="#blogitem-2" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- / Blog item -->
+
+                            <!-- This is a blog item -->
+                            <div class="blogitem-content hidden" id="blogitem-2">
+                                <img src="/content/blog02.jpg" alt="">
+                                <h2 class="primary-color">Cras gravida fringilla</h2>
+                                <div class="blogmeta muted">
+                                    <div><span class="glyphicons user"><i></i></span>Mike Smith</div>
+                                    <div><span class="glyphicons calendar"><i></i></span>May 16, 2012</div>
+                                    <div><span class="glyphicons inbox"><i></i></span>Category</div>
+                                    <div><span class="glyphicons tags"><i></i></span>Lorem, Ipsum, Dolor, Sit amet</div>
+                                </div>
+                                <h3>Accumsan dolor ornare</h3>
+                                <p>Vivamus gravida convallis est, non tristique nisl pellentesque ut. Praesent congue tortor vel quam scelerisque in suscipit elit malesuada. Nam volutpat ultricies augue, ac accumsan dolor ornare eu. Nam ut egestas nulla. Nunc ullamcorper, nulla vitae pellentesque dictum, diam ligula iaculis ipsum, aliquam vestibulum leo libero vel turpis. Nunc cursus dignissim sodales. </p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#blogitem-1" class="">← Previous</a></li>
+                                    <li class="next"><a href="#blogitem-3" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- / Blog item -->
+
+                            <!-- This is a blog item -->
+                            <div class="blogitem-content hidden" id="blogitem-3">
+                                <img src="/content/blog03.jpg" alt="">
+                                <h2 class="primary-color">Nulla diam lacus</h2>
+                                <div class="blogmeta muted">
+                                    <div><span class="glyphicons user"><i></i></span>Mike Smith</div>
+                                    <div><span class="glyphicons calendar"><i></i></span>April 22, 2012</div>
+                                    <div><span class="glyphicons inbox"><i></i></span>Category</div>
+                                    <div><span class="glyphicons tags"><i></i></span>Lorem, Ipsum, Dolor, Sit amet</div>
+                                </div>
+                                <h3>Etiam sagittis, felis id </h3>
+                                <p>Etiam eleifend sem ornare lacus ullamcorper interdum. Aenean nec justo nisl, vel cursus nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellentesque, eros at vestibulum feugiat, ante urna cursus turpis, in rhoncus enim lorem ac nisl. Phasellus tristique ultricies metus, a condimentum lacus sagittis non. Phasellus euismod nulla eget lacus aliquam auctor.</p>
+                                <p>Sed nisl sem, semper id sollicitudin vitae, pharetra at tellus. Ut eu sem vitae erat rhoncus posuere. Praesent hendrerit, nunc nec molestie bibendum, leo metus volutpat lacus, a luctus ante massa a lectus. Etiam sagittis, felis id dignissim pulvinar, purus lorem tempor lectus, et suscipit mauris lorem et elit. </p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#blogitem-2" class="">← Previous</a></li>
+                                    <li class="next"><a href="#blogitem-4" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- / Blog item -->
+
+                            <!-- This is a blog item -->
+                            <div class="blogitem-content hidden" id="blogitem-4">
+                                <img src="/content/blog04.jpg" alt="">
+                                <h2 class="primary-color">Proin quam lacus</h2>
+                                <div class="blogmeta muted">
+                                    <div><span class="glyphicons user"><i></i></span>Mike Smith</div>
+                                    <div><span class="glyphicons calendar"><i></i></span>March 27, 2012</div>
+                                    <div><span class="glyphicons inbox"><i></i></span>Category</div>
+                                    <div><span class="glyphicons tags"><i></i></span>Lorem, Ipsum, Dolor, Sit amet</div>
+                                </div>
+                                <h3>Proin tincidunt diam ac lectus tristique scelerisque</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#blogitem-3" class="">← Previous</a></li>
+                                    <li class="next"><a href="#blogitem-5" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- / Blog item -->
+
+                            <!-- This is a blog item -->
+                            <div class="blogitem-content hidden" id="blogitem-5">
+                                <img src="/content/blog05.jpg" alt="">
+                                <h2 class="primary-color">In sed eleifend orci</h2>
+                                <div class="blogmeta muted">
+                                    <div><span class="glyphicons user"><i></i></span>Mike Smith</div>
+                                    <div><span class="glyphicons calendar"><i></i></span>February 13, 2012</div>
+                                    <div><span class="glyphicons inbox"><i></i></span>Category</div>
+                                    <div><span class="glyphicons tags"><i></i></span>Lorem, Ipsum, Dolor, Sit amet</div>
+                                </div>
+                                <h3>Enim mauris rhoncus elit</h3>
+                                <p>Phasellus condimentum pulvinar tincidunt. Phasellus vehicula, felis id auctor placerat, nunc magna feugiat nunc, vitae tempor metus lorem ac quam. In vel lacus nibh, a varius metus.</p>
+                                <p>Suspendisse ut tortor ligula, id fringilla mi. Curabitur bibendum tortor tempus sem posuere vehicula accumsan mauris molestie. Etiam eget nulla vel sem tristique dapibus. In orci justo, pharetra vel scelerisque eu, gravida vel felis. Etiam mattis blandit rutrum. Maecenas viverra massa sed sem feugiat sed mollis dolor venenatis. In aliquet, sem et cursus scelerisque, enim mauris rhoncus elit, sit amet ornare massa metus non lectus. </p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#blogitem-4" class="">← Previous</a></li>
+                                    <li class="next"><a href="#blogitem-6" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- / Blog item -->
+
+                            <!-- This is a blog item -->
+                            <div class="blogitem-content hidden" id="blogitem-6">
+                                <img src="/content/blog06.jpg" alt="">
+                                <h2 class="primary-color">In sed eleifend orci</h2>
+                                <div class="blogmeta muted">
+                                    <div><span class="glyphicons user"><i></i></span>Mike Smith</div>
+                                    <div><span class="glyphicons calendar"><i></i></span>January 2nd, 2012</div>
+                                    <div><span class="glyphicons inbox"><i></i></span>Category</div>
+                                    <div><span class="glyphicons tags"><i></i></span>Lorem, Ipsum, Dolor, Sit amet</div>
+                                </div>
+                                <h3>Consectetur adipiscing elit</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt diam ac lectus tristique scelerisque. Quisque vitae libero sit amet turpis faucibus auctor eget vitae tortor. Aenean metus erat, ultricies non mattis quis, molestie ac massa. Sed sollicitudin erat ac dui viverra a posuere eros adipiscing. Phasellus nisi lectus, imperdiet sed hendrerit ac, dictum quis sem. Phasellus vel nisi non massa elementum porta. Aliquam erat volutpat.</p>
+
+
+                                <ul class="pager">
+                                    <li class="previous"><a href="#blogitem-5" class="">← Previous</a></li>
+                                    <li class="next"><a href="#blogitem-1" class="">Next →</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- / Blog item -->
+
+                        </div>
+                        <!--/span9-->
+                    </div>
+                    <!--/row-->
+
+                </div>
+                <!--/section-->
+                <span class="clear"></span>
+
+
+                <div class="section noprint" id="contact">
+                    <h2 class="section-title"><span class="glyphicons message_flag"><i></i></span>Contact<a href="#phone-navbar" class="top visible-phone"><span class="glyphicons white up_arrow"><i></i></span></a></h2>
+
+
+                    <div class="alert alert-info">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        Make sure to fill all the fields with correct values before sending your email!
+                       
+                    </div>
+                    <form method="post" action="#contact" class="form-horizontal">
+                        <fieldset>
+                            <legend>Send me a message using the form below</legend>
+
+                            <div class="control-group">
+                                <label class="control-label" for="form-name">Name</label>
+                                <div class="controls">
+                                    <div class="input-append">
+                                        <input type="text" placeholder="Your name" id="form-name" name="name" class="input-xlarge" value="">
+                                        <span class="add-on"><span class="glyphicons user"><i></i></span></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="form-email">Email</label>
+                                <div class="controls">
+                                    <div class="input-append">
+                                        <input type="text" placeholder="Your email" id="form-email" name="email" class="input-xlarge" value="">
+                                        <span class="add-on">@</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="form-subject">Subject</label>
+                                <div class="controls">
+                                    <div class="input-append">
+                                        <input type="text" placeholder="Email Subject" id="form-subject" name="subject" class="input-xlarge" value="">
+                                        <span class="add-on"><span class="glyphicons circle_question_mark"><i></i></span></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="form-message">Message</label>
+                                <div class="controls">
+                                    <div class="input-append">
+                                        <textarea rows="6" placeholder="Your message" id="form-message" name="message" class="input-xlarge"></textarea>
+                                        <span class="add-on"><span class="glyphicons pen"><i></i></span></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button type="submit" class="btn btn-primary input-medium" name="submit">Submit</button>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+                    </form>
+                </div>
+                <!--/section-->
+
+
             </div>
-          </div>
-        </div><!-- /.navbar -->
-      </div>
+            <div class="span3 sbright noprint" id="sidebar">
+                <div class="sidebar-nav equal hidden-phone" style="height: 5850px;">
+                    <ul class="nav nav-list affix" id="resumenav">
+                        <li class="active"><a href="#about-me" class="scroller">About me</a></li>
+                        <li class=""><a href="#personal-information" class="scroller">Personal Info</a></li>
+                        <li class=""><a href="#employment" class="scroller">Employment</a></li>
+                        <li class=""><a href="#education" class="scroller">Education</a></li>
+                        <li class=""><a href="#skills" class="scroller">Skills</a></li>
+                        <li class=""><a href="#testimonials" class="scroller">Testimonials</a></li>
+                        <li class=""><a href="#hobbies" class="scroller">Hobbies</a></li>
+                        <li class=""><a href="#portfolio" class="scroller">Portfolio</a></li>
+                        <li class=""><a href="#blog" class="scroller">Blog</a></li>
+                        <li class=""><a href="#contact" class="scroller">Contact</a></li>
+                    </ul>
+                </div>
+                <!--/sidebar-nav -->
+                <span class="clear"></span>
+            </div>
+            <!--/span3 -->
 
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1>Web-Development!</h1>
-          <p class="lead">Hi. I'm Alex Shkor. I'm professional web developer. I love <strong>CQRS</strong> and <strong>Event Sourcing</strong> and this blog mostly dedicated to these approaches (tenets).</p>
-        <a class="btn btn-large btn-success" href="blog.htm">Go to blog.</a>
-      </div>
 
-      <hr>
+        </div>
+        <!--/row-->
 
-      <!-- Example row of columns -->
-      <div class="row-fluid">
-          <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details »</a></p>
-          </div>
-          <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details »</a></p>
-          </div>
-          <div class="span4">
-              <h2>Heading</h2>
-              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-              <p><a class="btn" href="#">View details »</a></p>
-          </div>
-      </div>
+        <div id="footer">
+            <p>© Alex Shkor - 2013</p>
+        </div>
 
-            <div id="disqus_thread"></div>
-      <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-          var disqus_shortname = 'shkor'; // required: replace example with your forum shortname
+    </div>
+    <!--/.container-->
 
-          /* * * DON'T EDIT BELOW THIS LINE * * */
-          (function () {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-      </script>
 
-      <hr>
-
-      <div class="footer">
-        <p>© Company 2013</p>
-      </div>
-
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/scripts/jquery.js"></script>
-    <script src="/scripts/bootstrap-transition.js"></script>
-    <script src="/scripts/bootstrap-alert.js"></script>
-    <script src="/scripts/bootstrap-modal.js"></script>
-    <script src="/scripts/bootstrap-dropdown.js"></script>
-    <script src="/scripts/bootstrap-scrollspy.js"></script>
-    <script src="/scripts/bootstrap-tab.js"></script>
-    <script src="/scripts/bootstrap-tooltip.js"></script>
-    <script src="/scripts/bootstrap-popover.js"></script>
-    <script src="/scripts/bootstrap-button.js"></script>
-    <script src="/scripts/bootstrap-collapse.js"></script>
-    <script src="/scripts/bootstrap-carousel.js"></script>
-    <script src="/scripts/bootstrap-typeahead.js"></script>
-
-  
-
-</body></html>
+</body>
+</html>
