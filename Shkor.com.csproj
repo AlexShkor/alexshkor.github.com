@@ -57,10 +57,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\alexshkor.jpg" />
     <Content Include="content\body.css" />
     <Content Include="content\bootstrap-responsive.min.css" />
     <Content Include="content\bootstrap.min.css" />
     <Content Include="content\glyphicons.css" />
+    <Content Include="content\images\timeline.gif" />
     <Content Include="content\photoswipe.css" />
     <Content Include="content\prettyPhoto.css" />
     <Content Include="content\red_theme.css" />
@@ -94,11 +96,9 @@
     <Content Include="content\jquery.reveal.js" />
     <Content Include="content\klass.min.js" />
     <Content Include="content\layout.js" />
-    <Content Include="content\portrait.jpg" />
     <Content Include="content\print.css" />
     <Content Include="content\reveal.css" />
     <Content Include="content\scripts.js" />
-    <Content Include="content\skin.php" />
     <Content Include="content\thumb01.jpg" />
     <Content Include="content\thumb02.jpg" />
     <Content Include="content\thumb03.jpg" />
