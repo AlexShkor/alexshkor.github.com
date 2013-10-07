@@ -48,7 +48,7 @@ a, .primary-color, .dark .primary-color {
 }
 
 body {
-    background: #ececec url(../images/textures/vichy.png) fixed repeat !important;
+    background: #ececec /*url(../images/textures/vichy.png) fixed repeat*/ !important;
 }
 
 #content {
